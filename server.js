@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const cors = require('cors') // new one
 
-// the conttrolers
+// the import for conttrolers
 const studentCtrl = require('./controllers/students.js')
 
 const app = express()
@@ -31,6 +31,8 @@ app.use(morgan('dev'))
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Students API' })
 })
+
+app.post('/students', studentCtrl.create )
 
 
 
