@@ -39,12 +39,30 @@ const show = async (req,res) => {
     }
 }
 
+const update = async (req,res) => {
+     try {
+        const studentData = {
+        name: req.body.name,
+        favoriteFood: req.body.favoriteFood,
+        favoriteEmoji: req.body.favoriteEmoji
+    }
 
+        const updatedStudent = await Student.findByIdAndUpdate(
+            req.params.studentId,
+            studentData, // you can also write req.body
+            {new: true})
+            res.json(updatedStudent)
+        
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
 
 module.exports = {
     create, 
     index,
     show,
+    update,
     
 }
 
