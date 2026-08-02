@@ -7,8 +7,8 @@ const studentSchema = new mongoose.Schema({
       required: true,
       trim: true,
     },
-    
-    favorriteFood: {
+
+    favoriteFood: {
         type: String,
       default: 'Not added yet',
       trim: true,

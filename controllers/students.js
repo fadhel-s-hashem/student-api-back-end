@@ -2,15 +2,21 @@ const Student = require('../models/student')
 
 const create = async (req, res) => {
 
-    
-    const studentData = {
+    try{ const studentData = {
         name: req.body.name,
-        favoritFood: req.body.favoritFood,
-        favoritEmoji: req.body.favoritEmoji
+        favoriteFood: req.body.favoriteFood,
+        favoriteEmoji: req.body.favoriteEmoji
     }
+
+const createdStudent = await Student.create(studentData )
+    res.status(201).json(createdStudent)
+} catch(error) {
+    res.status(401).json({ message: error.message })
+}
+
+   
     
-   const createdStudent = await Student.create(studentData )
-    res.json(createdStudent)
+   
   
 }
 
