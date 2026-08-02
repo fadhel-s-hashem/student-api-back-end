@@ -30,6 +30,7 @@ const index = async (req, res) => {
 const show = async (req,res) => {
     try {
         const student = await Student.findById(req.params.studentId)
+        
         if(!student) {
            return res.status(404).json({ message: 'Student not found' })
         }
@@ -51,7 +52,24 @@ const update = async (req,res) => {
             req.params.studentId,
             studentData, // you can also write req.body
             {new: true})
-            res.json(updatedStudent)
+            res.status(200).json(updatedStudent)
+
+            if(!updatedStudent) {
+           return res.status(404).json({ message: 'Student not found' })
+        }
+        
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
+const deleteStudent = async (req,res) => {
+    try {
+        const deletedStudent = await Student.findByIdAndDelete(req.params.studentId)
+
+        res.status(205).json(deletedStudent)
+
+        
         
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -63,10 +81,12 @@ module.exports = {
     index,
     show,
     update,
+    deleteStudent,
     
 }
 
 // were gonna use it in all the function
+
 //  try {
         
 //     } catch (error) {

@@ -36,6 +36,8 @@ app.post('/students', studentCtrl.create )
 app.get('/students', studentCtrl.index)
 app.get('/students/:studentId', studentCtrl.show)
 app.put('/students/:studentId', studentCtrl.update)
+app.delete('/students/:studentId', studentCtrl.deleteStudent)
+
 
 
 const port = process.env.PORT || 3000
