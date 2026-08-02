@@ -11,15 +11,31 @@ const create = async (req, res) => {
 const createdStudent = await Student.create(studentData )
     res.status(201).json(createdStudent)
 } catch(error) {
-    res.status(401).json({ message: error.message })
+    res.status(400).json({ message: error.message })
+} 
 }
 
-   
+const index = async (req, res) => {
+    try {
+        // this sort({ createdAt: -1 }) to arrange the api content by ceated time
+      const students = await  Student.find().sort({ createdAt: -1 })
+      res.status(200).json(students)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+
     
-   
-  
 }
 
 module.exports = {
-    create,
+    create, 
+    index,
+    
 }
+
+// were gonna use it in all the function
+//  try {
+        
+//     } catch (error) {
+//         res.status(500).json({ message: error.message })
+//     }

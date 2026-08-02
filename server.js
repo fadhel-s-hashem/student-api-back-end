@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/students', studentCtrl.create )
+app.get('/students', studentCtrl.index)
 
 
 
